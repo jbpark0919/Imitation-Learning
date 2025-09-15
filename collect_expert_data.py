@@ -6,8 +6,8 @@ import numpy as np
 import gymnasium as gym
 from tqdm import trange
 
-from src.DQN import DQN             # 네 DQN wrapper 클래스
-from src.Preprocess import preprocess  # observation 전처리 함수
+from src.DQN import DQN             
+from src.Preprocess import preprocess 
 
 def collect_expert_data(
     model_path="dqn.pt",
@@ -19,12 +19,12 @@ def collect_expert_data(
     env = gym.make(
         "CarRacing-v3",
         domain_randomize=False,
-        continuous=False,              # 반드시 discrete로 설정
+        continuous=False,              
         render_mode=None
     )
 
-    obs_shape = (4, 96, 96)           # 4-frame stack
-    num_actions = env.action_space.n # 일반적으로 5
+    obs_shape = (4, 96, 96)           
+    num_actions = env.action_space.n 
 
     # DQN 모델 초기화 및 로드
     model = DQN(obs_shape, num_actions).network.to(device)
